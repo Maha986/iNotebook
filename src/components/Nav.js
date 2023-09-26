@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
-
+import logo from "../assets/logo.PNG"
+import "../style/_custom.css"
 export default function Nav(props) {
   //uselocation gives the current component
   let location = useLocation();
@@ -18,7 +19,7 @@ export default function Nav(props) {
       <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            {props.title}
+            <img src={logo} alt="Notewise" className="h-3rem" />
           </Link>
           <button
             className="navbar-toggler"
@@ -34,8 +35,8 @@ export default function Nav(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className={`nav-link ${location.pathname==="/home"?"active":""}`}aria-current="page" to="/home">
-                  Home
+                <Link className={`nav-link ${location.pathname==="/notes"?"active":""}`}aria-current="page" to="/notes">
+                  Notes
                 </Link>
               </li>
               <li className="nav-item">
@@ -44,13 +45,16 @@ export default function Nav(props) {
                 </Link>
               </li>
             </ul>
-            {localStorage.getItem('authToken')?<Link className="btn btn-success mx-2" role="button" to="/" onClick={logout}>Logout</Link>:<Link className="btn btn-success mx-2" role="button" to="/">Login</Link>}
+            <div className="float-lg-end">
+            {localStorage.getItem('authToken')?<Link className="btn btn-warning mx-2" role="button" to="/" onClick={logout}>Logout</Link>:<Link className="btn btn-warning mx-2" role="button" to="/login">Login</Link>}
             
-            <Link className="btn btn-success" role="button" to="/signup">Signup</Link>
+            <Link className="btn btn-warning" role="button" to="/signup">Signup</Link>
             {props.searchBar?<form className="d-flex">
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-              <button className="btn btn-outline-success" type="submit">Search</button>
+              <button className="btn btn-outline-warning" type="submit">Search</button>
             </form>:""}
+            </div>
+            
           </div>
         </div>
       </nav>

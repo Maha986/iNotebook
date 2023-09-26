@@ -14,7 +14,7 @@ const fetchuser=(req,res,next)=>{
         req.user = data.user;
     }
     catch(error){
-        console.log(error);
+        console.log("middleware" ,error);
         res.status(401).send({error:"Please authenticate using a valid token"})
     }
     next();

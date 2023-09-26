@@ -117,12 +117,12 @@ route.post('/login', [
 route.post('/getuser', fetchuser, async (req, res) => {
   // console.log(__dirname);
   try {
-    userId = req.user.id;
+    let userId = req.user.id;
     const user = await User.findById(userId).select("-password"); //-password means select all except password
     res.send(user);
   }
   catch (error) {
-    console.log(error);
+    console.log("getuser ",error);
     res.status(500).send("Internal Server Error");
   }
 });

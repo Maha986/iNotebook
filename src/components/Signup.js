@@ -2,7 +2,7 @@ import React,{useState, useContext, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import userContext from '../context/user/userContext'
 import alertContext from '../context/Alert/alertContext';
-
+import signupimage from "../assets/signup.png"
 function Signup() {
 
     const context = useContext(userContext);
@@ -30,7 +30,7 @@ function Signup() {
             }
             else
             {
-                showAlert(userAuthres.message,"danger");
+                showAlert(userAuthres.message,"error");
             }
         }
     }, [userAuthres])
@@ -39,7 +39,9 @@ function Signup() {
     }
   return (
     <>
-      <form onSubmit={handleSubmit}>
+    <div className='d-flex justify-content-between align-items-center flex-column-reverse flex-md-row'>
+            <div className='col-10 col-md-5 mt-5'>
+            <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">User Name</label>
           <input type="name" name="name" value={user.name} onChange={handleChange} className="form-control" id="name" aria-describedby="emailHelp" />
@@ -57,8 +59,15 @@ function Signup() {
           <input type="password" name="cpassword" value={user.cpassword} onChange={handleChange} className="form-control" id="cpassword" />
         </div>
 
-        <button disabled={user.password.length<5 || user.name.length<3 || user.password !== user.cpassword} type="submit" className="btn btn-primary" onClick={handleSubmit}>Signup</button>
+        <button disabled={user.password.length<5 || user.name.length<3 || user.password !== user.cpassword} type="submit" className="btn btn-warning" onClick={handleSubmit}>Signup</button>
       </form>
+            </div>
+      
+            <div className="col-10 col-md-5">
+
+<img src={signupimage} alt="" className='w-100' />
+</div>
+    </div>
     </>
   )
 }

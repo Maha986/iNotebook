@@ -41,24 +41,29 @@ export default function Notes() {
         ref.current.style.display="block";
         setNote(note);
       }
-    return (
-        <>
-            <AddNote btn="add" note={note} setNote={setNote} title="Add a note"/>
-            <div ref={ref} style={style}>
-            <AddNote reference={ref} note={note} setNote={setNote} btn="update" title="Update a note"/>
-            </div>
-            <div className="row my-3">
-
-                <h1>Your Notes</h1>
-                {/* if no else part is present then instead of ? we use && */}
-                <div className="container">    
-                {notes.length===0 && "No notes to display"}
+      if(localStorage.getItem('authToken')){
+        return (
+            <>
+                <AddNote btn="add" note={note} setNote={setNote} title="Add a note"/>
+                <div ref={ref} style={style}>
+                <AddNote reference={ref} note={note} setNote={setNote} btn="update" title="Update a note"/>
                 </div>
-                {notes.map((note) => {
-                    return <Noteitem key={note._id} updatenote={updatenote} note={note} />;
-                })}
-
-            </div>
-        </>
+                <div className="row my-3">
+    
+                    <h1>Your Notes</h1>
+                    {/* if no else part is present then instead of ? we use && */}
+                    <div className="container">    
+                    {notes.length===0 && "No notes to display"}
+                    </div>
+                    {notes.map((note) => {
+                        return <Noteitem key={note._id} updatenote={updatenote} note={note} />;
+                    })}
+    
+                </div>
+            </>
+        )
+      }  
+    return (
+        <></>
     )
 }

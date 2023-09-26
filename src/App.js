@@ -13,6 +13,7 @@ import NoteState from './context/notes/NoteState';
 import Alert from './components/Alert';
 import UserState from './context/user/UserState';
 import AlertState from './context/Alert/AlertState';
+import LandingPage from './components/LandingPage';
 
 function App() {
   return (
@@ -25,13 +26,15 @@ function App() {
               <Alert />
               <div className="container my-3">
                 <Routes>
-                  <Route exact path="/home" element={<Home />}>
+                  <Route exact path="/notes" element={<Home />}>
                   </Route>
                   <Route exact path="/about" element={<About />}>
                   </Route>
-                  <Route exact path="/" element={<Login />}>
+                  <Route exact path="/" element={<LandingPage />}>
                   </Route>
                   <Route exact path="/signup" element={<Signup />}>
+                  </Route>
+                  <Route exact path="/login" element={<Login />}>
                   </Route>
                 </Routes>
               </div>
